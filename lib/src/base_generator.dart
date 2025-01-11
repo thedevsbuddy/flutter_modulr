@@ -1,6 +1,4 @@
 import 'package:recase/recase.dart';
-import 'package:dcli/dcli.dart';
-
 
 class BaseGenerator {
   List<String> args = [];
@@ -18,7 +16,7 @@ class BaseGenerator {
   String viewPath = "";
   String routePath = "";
 
-  BaseGenerator(this.args){
+  BaseGenerator(this.args) {
     moduleName = ReCase(args.first);
     controllerName = moduleName;
     viewName = moduleName;
