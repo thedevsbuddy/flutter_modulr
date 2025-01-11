@@ -1,0 +1,19 @@
+name: modulr
+description: A package to generate modules for the FlutterMVC project.
+version: 0.0.1
+homepage: "https://github.com/thedevsbuddy/zflarter"
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dcli: ^6.1.0
+  recase: ^4.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
