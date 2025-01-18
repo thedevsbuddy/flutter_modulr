@@ -1,9 +1,7 @@
 const String stub = """
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:ui_x/ui_x.dart';
 
-import '../../../shared/views/errors/errors.dart';
 import '../../../shared/views/layouts/master_layout.dart';
 import '../../../shared/views/widgets/widgets.dart';
 import '../controllers/{SNAKE_MODULE}_controller.dart';
