@@ -2,7 +2,7 @@ const String stub = """
 import 'package:get/get.dart';
 
 import '../../../shared/controllers/app_controller.dart';
-import '../services/{SNAKE_MODULE}_service.dart';
+// import '../services/{SNAKE_MODULE}_service.dart';
 
 class {MODULE}Controller extends AppController {
   /// Create and get the instance of the controller
@@ -12,7 +12,7 @@ class {MODULE}Controller extends AppController {
   }
 
   /// Initialise [{MODULE}Module] service
-  final {MODULE}Service _{CAMEL_MODULE}Service = {MODULE}Service.instance;
+  // final {MODULE}Service _{CAMEL_MODULE}Service = {MODULE}Service.instance;
   
   /// Observables
   final RxBool _exampleBool = RxBool(false);

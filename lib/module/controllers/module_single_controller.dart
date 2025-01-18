@@ -11,7 +11,7 @@ class {CONTROLLER}Controller extends AppController {
   }
   
   /// Observables
-  final _exampleBool = false.obs;
+  final RxBool _exampleBool = RxBool(false);
 
   /// Getters
   bool get exampleBool => _exampleBool.value;
