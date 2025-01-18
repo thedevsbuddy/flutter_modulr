@@ -5,7 +5,7 @@ import '{SNAKE_MODULE}_service.dart';
 
 class Api{MODULE}Service extends BaseService implements {MODULE}Service {  
   @override
-  Future<ApiResponse> doSomething() async {
+  Future<ApiResponse> doSomething({required String client}) async {
     throw UnimplementedError();
   }
 }

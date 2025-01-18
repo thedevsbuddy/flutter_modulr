@@ -15,7 +15,7 @@ class {MODULE}Controller extends AppController {
   final {MODULE}Service _{CAMEL_MODULE}Service = {MODULE}Service.instance;
   
   /// Observables
-  final _exampleBool = false.obs;
+  final RxBool _exampleBool = RxBool(false);
 
   /// Getters
   bool get exampleBool => _exampleBool.value;

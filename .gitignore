@@ -76,3 +76,7 @@ build/
 
 /example/lib/app/
 !/example/lib/main.dart
+
+# FVM Version Cache
+.fvm/
+.fvm/flutter_sdk/
