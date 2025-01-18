@@ -16,9 +16,7 @@ class {MODULE}Page extends StatelessWidget {
     return GetBuilder<{MODULE}Controller>(
       init: {MODULE}Controller(),
       builder: ({MODULE}Controller controller) {
-        return !controller.isConnected
-            ? NotConnectedErrorPage()
-            : controller.isBusy
+        return controller.isBusy
                 ? LoadingIconWidget(message: "Please wait...")
                 : MasterLayout(
                     title: "{MODULE}",
