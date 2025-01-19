@@ -69,4 +69,26 @@ class Utils {
   static String replaceAll(String text, dynamic needle) {
     return text.replaceAll('.', needle);
   }
+
+  static formatGeneratedCode() async {
+    print(blue('Formatting Generated Code....'));
+    try {
+      final moduleResult = await Process.run('dart', ['format', 'lib/app']);
+      if (moduleResult.exitCode == 0) {
+        print(blue(moduleResult.stdout));
+      } else {
+        print(red('Command failed with error code ${moduleResult.exitCode}: ${moduleResult.stderr}'));
+      }
+
+      print(blue('Formatting Generated Code....'));
+      final routeResult = await Process.run('dart', ['format', 'lib/routes']);
+      if (routeResult.exitCode == 0) {
+        print(blue(routeResult.stdout));
+      } else {
+        print(red('Command failed with error code ${routeResult.exitCode}: ${routeResult.stderr}'));
+      }
+    } catch (e) {
+      print(red('Error running command: $e'));
+    }
+  }
 }
