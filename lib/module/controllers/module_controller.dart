@@ -85,7 +85,7 @@ class {CONTROLLER}Controller extends AppController {
       }
 
       /// Reload the data
-      await index();
+      await index(refresh: true);
 
       /// Close the client
       _{CAMEL_MODULE}Service.close(_client);
