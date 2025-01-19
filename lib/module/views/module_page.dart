@@ -14,16 +14,15 @@ class {PAGE}Page extends StatelessWidget {
     return GetBuilder<{CONTROLLER}Controller>(
       init: {CONTROLLER}Controller(),
       builder: ({CONTROLLER}Controller controller) {
-        return controller.isBusy
-                ? LoadingIconWidget(message: "Please wait...")
-                : MasterLayout(
-                    title: "{MODULE}",
-                    body: SafeArea(
-                      child: Center(
-                        child: Text("Build awesome page here."),
-                      ),
-                    ),
-                  );
+       if (controller.isBusy) return LoadingIconWidget(message: "Please wait...");
+        return MasterLayout(
+          title: "{MODULE}",
+          body: SafeArea(
+            child: Center(
+              child: Text("Build awesome page here."),
+            ),
+          ),
+        );
       },
     );
   }
