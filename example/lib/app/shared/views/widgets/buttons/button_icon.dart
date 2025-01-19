@@ -27,7 +27,8 @@ class ButtonIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ButtonIconController btnController = Get.put(ButtonIconController(), tag: key.toString());
+    final ButtonIconController btnController =
+        Get.put(ButtonIconController(), tag: key.toString());
     return Obx(
       () => GestureDetector(
         onTap: () {
@@ -42,18 +43,26 @@ class ButtonIcon extends StatelessWidget {
             AnimatedContainer(
               duration: const Duration(milliseconds: 250),
               padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-              constraints: BoxConstraints(minHeight: radius * 2, minWidth: radius * 2),
+              constraints:
+                  BoxConstraints(minHeight: radius * 2, minWidth: radius * 2),
               alignment: Alignment.center,
               decoration: !outline
                   ? BoxDecoration(
-                      color: !btnController.isDisabled ? backgroundColor : backgroundColor!.withAlpha(alpha(0.5)),
-                      borderRadius: BorderRadius.circular(radius.toDouble() * 2),
+                      color: !btnController.isDisabled
+                          ? backgroundColor
+                          : backgroundColor!.withAlpha(alpha(0.5)),
+                      borderRadius:
+                          BorderRadius.circular(radius.toDouble() * 2),
                     )
                   : BoxDecoration(
                       color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(radius.toDouble() * 2),
+                      borderRadius:
+                          BorderRadius.circular(radius.toDouble() * 2),
                       border: Border.all(
-                        color: !btnController.isDisabled ? getContrastColor(backgroundColor!) : getContrastColor(backgroundColor!).withAlpha(alpha(0.5)),
+                        color: !btnController.isDisabled
+                            ? getContrastColor(backgroundColor!)
+                            : getContrastColor(backgroundColor!)
+                                .withAlpha(alpha(0.5)),
                         width: 1,
                       ),
                     ),
@@ -62,7 +71,9 @@ class ButtonIcon extends StatelessWidget {
                   : loadingIcon != null
                       ? SizedBox(height: 20, width: 20, child: loadingIcon)
                       : LoadingIcon(
-                          color: !outline ? getContrastColor(backgroundColor!) : backgroundColor!,
+                          color: !outline
+                              ? getContrastColor(backgroundColor!)
+                              : backgroundColor!,
                           height: 16,
                         ),
             ),

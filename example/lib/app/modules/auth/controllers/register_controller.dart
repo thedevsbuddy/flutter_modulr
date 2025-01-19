@@ -49,7 +49,8 @@ class RegisterController extends AppController {
       /// Initialize the Service and request server
       _authService.init(client);
 
-      ApiResponse response = await _authService.register(client: client, body: body);
+      ApiResponse response =
+          await _authService.register(client: client, body: body);
 
       if (response.hasError()) {
         Toastr.show(message: "${response.message}");

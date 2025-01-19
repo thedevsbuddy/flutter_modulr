@@ -42,9 +42,13 @@ class LoginPage extends StatelessWidget {
                               width: 75,
                             ),
                             const SizedBox(height: kSpacer),
-                            Text("Welcome Back,", style: TextStyl.title(context)!.copyWith(fontWeight: FontWeight.w700)),
+                            Text("Welcome Back,",
+                                style: TextStyl.title(context)!
+                                    .copyWith(fontWeight: FontWeight.w700)),
                             const SizedBox(height: kSpacer1),
-                            Text("Sign in to continue", style: TextStyl.body(context)!.copyWith(fontWeight: FontWeight.bold)),
+                            Text("Sign in to continue",
+                                style: TextStyl.body(context)!
+                                    .copyWith(fontWeight: FontWeight.bold)),
                           ],
                         ),
                         Form(
@@ -56,14 +60,20 @@ class LoginPage extends StatelessWidget {
                                 controller: controller.identifierInput,
                                 placeholder: "Username / Email / Phone",
                                 leading: Icon(FeatherIcons.user),
-                                validator: (value) => Validator("identifier", value!).required().validate(),
+                                validator: (value) =>
+                                    Validator("identifier", value!)
+                                        .required()
+                                        .validate(),
                               ),
                               SizedBox(height: 25),
                               FormInput.password(
                                 controller: controller.passwordInput,
                                 placeholder: "Password",
                                 leading: Icon(Icons.lock_outline),
-                                validator: (value) => Validator("password", value!).required().validate(),
+                                validator: (value) =>
+                                    Validator("password", value!)
+                                        .required()
+                                        .validate(),
                                 action: TextInputAction.done,
                               ),
                               SizedBox(height: 25),
@@ -82,11 +92,18 @@ class LoginPage extends StatelessWidget {
                                 child: Text.rich(
                                   TextSpan(
                                     text: "Don't have an account?",
-                                    style: TextStyl.button(context)?.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color),
+                                    style: TextStyl.button(context)?.copyWith(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.color),
                                     children: [
                                       TextSpan(
                                         text: " Join Now",
-                                        style: TextStyl.button(context)?.copyWith(color: Theme.of(context).primaryColor),
+                                        style: TextStyl.button(context)
+                                            ?.copyWith(
+                                                color: Theme.of(context)
+                                                    .primaryColor),
                                       ),
                                     ],
                                   ),

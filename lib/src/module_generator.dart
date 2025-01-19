@@ -37,6 +37,9 @@ class ModuleGenerator extends BaseGenerator {
 
     // Update Routes Export
     await updateRoutesExport();
+
+    // Update Modules Export
+    await updateModuleExport();
   }
 
   Future<void> generateModuleClass() async {
@@ -99,6 +102,27 @@ class ModuleGenerator extends BaseGenerator {
     Utils.writeFile(baseRouteFilePath, routeFileContent);
 
     /// Show Success message
-    print(green('Route export added to $baseRouteFilePath'));
+    print(green('Route export added to `$baseRouteFilePath`'));
+  }
+
+  Future<void> updateModuleExport() async {
+    String exportFile = "${moduleName.snakeCase}/${moduleName.snakeCase}_module.dart";
+    String modulesFilePath = "$modulesPath/modules.dart";
+    String modulesFileContent = await Utils.readFile(modulesFilePath);
+    if (modulesFileContent.contains(exportFile)) {
+      /// Show Success message
+      print(yellow('export "${moduleName.snakeCase}_module.dart" already exists in $modulesFilePath'));
+      return;
+    }
+    modulesFileContent = """
+      $modulesFileContent
+      export '$exportFile';
+    """;
+
+    /// Write File
+    Utils.writeFile(modulesFilePath, modulesFileContent);
+
+    /// Show Success message
+    print(green('Added `export "${moduleName.snakeCase}/${moduleName.snakeCase}_module.dart"` to `$modulesFilePath`'));
   }
 }

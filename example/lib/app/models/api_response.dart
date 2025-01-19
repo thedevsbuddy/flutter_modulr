@@ -14,7 +14,9 @@ class ApiResponse {
   factory ApiResponse.fromJson(Map<String, dynamic> json) => ApiResponse(
         status: json["success"] == null ? "error" : json["success"].toString(),
         message: json["message"] == null ? null : json["message"],
-        validationError: json["errors"] == null ? null : json['errors'][json["errors"].keys.first].first,
+        validationError: json["errors"] == null
+            ? null
+            : json['errors'][json["errors"].keys.first].first,
         data: json["data"] == null ? null : json["data"],
       );
 
@@ -25,7 +27,11 @@ class ApiResponse {
         "data": data == null ? null : data,
       };
 
-  ApiResponse copyWith({String? status, String? message, dynamic validationError, dynamic data}) {
+  ApiResponse copyWith(
+      {String? status,
+      String? message,
+      dynamic validationError,
+      dynamic data}) {
     return ApiResponse(
       status: status ?? this.status,
       message: message ?? this.message,

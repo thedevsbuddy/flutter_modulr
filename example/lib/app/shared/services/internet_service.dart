@@ -25,7 +25,8 @@ class InternetService extends GetxService {
     checkConnection();
     onConnectivityChanged = Connectivity().onConnectivityChanged;
 
-    connectivitySubscription = onConnectivityChanged.listen((List<ConnectivityResult> connectivityResult) {
+    connectivitySubscription = onConnectivityChanged
+        .listen((List<ConnectivityResult> connectivityResult) {
       if (connectivityResult.contains(ConnectivityResult.none)) {
         print('No Internet Connection');
         _isConnected(false);
@@ -45,7 +46,8 @@ class InternetService extends GetxService {
 
   /// Checks User connection state.
   void checkConnection() async {
-    List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
+    List<ConnectivityResult> connectivityResult =
+        await (Connectivity().checkConnectivity());
     if (connectivityResult.contains(ConnectivityResult.none)) {
       print('No Internet Connection');
       _isConnected(false);

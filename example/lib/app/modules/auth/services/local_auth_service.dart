@@ -10,7 +10,8 @@ class LocalAuthService extends BaseService implements AuthService {
   String? database = 'users';
 
   @override
-  Future<ApiResponse> login({required String client, required Map<String, dynamic> body}) async {
+  Future<ApiResponse> login(
+      {required String client, required Map<String, dynamic> body}) async {
     Map<String, dynamic>? _data = await db.findOne({
       'email': body['identifier'],
       'password': body['password'],
@@ -29,15 +30,19 @@ class LocalAuthService extends BaseService implements AuthService {
           );
     }
 
-    return await 300.milliseconds.delay(() => ApiResponse.error(message: "Invalid Credentials"));
+    return await 300
+        .milliseconds
+        .delay(() => ApiResponse.error(message: "Invalid Credentials"));
   }
 
   @override
-  Future<ApiResponse> register({required String client, required Map<String, dynamic> body}) async {
+  Future<ApiResponse> register(
+      {required String client, required Map<String, dynamic> body}) async {
     List<Map<String, dynamic>>? users = await db.findMany();
 
     int newId = 1;
-    if (users != null && users.isNotEmpty) newId = int.parse(users.last['id'].toString()) + 1;
+    if (users != null && users.isNotEmpty)
+      newId = int.parse(users.last['id'].toString()) + 1;
 
     List<Map<String, dynamic>>? _data = await db.store(
       UserModel.fromJson(body)
@@ -53,7 +58,10 @@ class LocalAuthService extends BaseService implements AuthService {
   }
 
   @override
-  Future<ApiResponse> verifyOtp({required String client, required Map<String, dynamic> body}) async {
-    return await 300.milliseconds.delay(() => ApiResponse.success(message: "OTP Verified"));
+  Future<ApiResponse> verifyOtp(
+      {required String client, required Map<String, dynamic> body}) async {
+    return await 300
+        .milliseconds
+        .delay(() => ApiResponse.success(message: "OTP Verified"));
   }
 }

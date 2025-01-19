@@ -11,6 +11,7 @@ class BaseGenerator {
 
   /// String properties
   String modulePath = "";
+  String modulesPath = "";
   String modelPath = "";
   String controllerPath = "";
   String servicePath = "";
@@ -24,7 +25,8 @@ class BaseGenerator {
     viewName = moduleName;
     serviceName = moduleName;
 
-    modulePath = "lib/app/modules/${moduleName.snakeCase}";
+    modulesPath = "lib/app/modules";
+    modulePath = "$modulesPath/${moduleName.snakeCase}";
     modelPath = "lib/app/models";
     baseRoutePath = "lib/routes";
     controllerPath = "lib/app/modules/${moduleName.snakeCase}/controllers";
