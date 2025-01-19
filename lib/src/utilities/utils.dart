@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dcli/dcli.dart';
 
 class Utils {
@@ -5,6 +7,10 @@ class Utils {
     if (!exists(path)) {
       createDir(path, recursive: true);
     }
+  }
+
+  static Future<String> readFile(String path) async {
+    return File(path).readAsString();
   }
 
   static void writeFile(file, content) {
@@ -51,11 +57,7 @@ class Utils {
 
   /// Convert String to [kebab-case]
   static String kebab(String text) {
-    return text
-        .trim()
-        .split(' ')
-        .map((element) => element.toLowerCase())
-        .join('-');
+    return text.trim().split(' ').map((element) => element.toLowerCase()).join('-');
   }
 
   /// Convert String to [snake_case]

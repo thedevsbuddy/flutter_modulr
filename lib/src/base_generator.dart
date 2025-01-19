@@ -11,10 +11,12 @@ class BaseGenerator {
 
   /// String properties
   String modulePath = "";
+  String modelPath = "";
   String controllerPath = "";
   String servicePath = "";
   String viewPath = "";
   String routePath = "";
+  String baseRoutePath = "";
 
   BaseGenerator(this.args) {
     moduleName = ReCase(args.first);
@@ -23,6 +25,8 @@ class BaseGenerator {
     serviceName = moduleName;
 
     modulePath = "lib/app/modules/${moduleName.snakeCase}";
+    modelPath = "lib/app/models";
+    baseRoutePath = "lib/routes";
     controllerPath = "lib/app/modules/${moduleName.snakeCase}/controllers";
     servicePath = "lib/app/modules/${moduleName.snakeCase}/services";
     viewPath = "lib/app/modules/${moduleName.snakeCase}/views";

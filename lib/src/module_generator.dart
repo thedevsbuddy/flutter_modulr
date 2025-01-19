@@ -3,9 +3,10 @@ import 'package:modulr/src/base_generator.dart';
 
 import 'package:modulr/module/module.dart' as modulr_module;
 import 'package:modulr/module/routes/router.dart' as modulr_router;
-import 'package:modulr/src/controller_generator.dart';
-import 'package:modulr/src/page_generator.dart';
-import 'package:modulr/src/service_generator.dart';
+import 'controller_generator.dart';
+import 'model_generator.dart';
+import 'page_generator.dart';
+import 'service_generator.dart';
 import 'utilities/utils.dart';
 
 class ModuleGenerator extends BaseGenerator {
@@ -29,6 +30,13 @@ class ModuleGenerator extends BaseGenerator {
 
     // Module
     await generateModuleClass();
+
+    // Page
+    ModelGenerator modelGenerator = ModelGenerator(args);
+    await modelGenerator.generate();
+
+    // Update Routes Export
+    await updateRoutesExport();
   }
 
   Future<void> generateModuleClass() async {
@@ -61,5 +69,36 @@ class ModuleGenerator extends BaseGenerator {
 
     /// Show Success message
     print(green('"$routePath/${moduleName.snakeCase}_router.dart" generated successfully!'));
+  }
+
+  Future<void> updateRoutesExport() async {
+    String exportLine = """
+    /// ${moduleName.pascalCase} Routes
+    ...${moduleName.camelCase}Routes,
+
+    //%EDIT_CODE_ABOVE_THIS_LINE_AND_DONT_REMOVE_THIS_LINE%//
+  """;
+
+    String baseRouteFilePath = "$baseRoutePath/router.dart";
+    String routeFileContent = await Utils.readFile(baseRouteFilePath);
+
+    if (routeFileContent.contains("...${moduleName.camelCase}Routes,")) {
+      print(yellow('Route export arleady exists in $baseRouteFilePath'));
+      return;
+    }
+
+    if (!routeFileContent.contains("//%EDIT_CODE_ABOVE_THIS_LINE_AND_DONT_REMOVE_THIS_LINE%//")) {
+      print(yellow('Route export can not be added to `$baseRouteFilePath`'));
+      print(red('Please add: `//%EDIT_CODE_ABOVE_THIS_LINE_AND_DONT_REMOVE_THIS_LINE%//` in `$baseRouteFilePath`` before `];`'));
+      return;
+    }
+
+    routeFileContent = routeFileContent.replaceAll("//%EDIT_CODE_ABOVE_THIS_LINE_AND_DONT_REMOVE_THIS_LINE%//", exportLine);
+
+    /// Write File
+    Utils.writeFile(baseRouteFilePath, routeFileContent);
+
+    /// Show Success message
+    print(green('Route export added to $baseRouteFilePath'));
   }
 }
