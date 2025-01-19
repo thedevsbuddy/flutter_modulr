@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 
-import '../../../models/api_response.dart';
 import '../../../shared/shared.dart';
 import 'api_settings_service.dart';
 import 'local_settings_service.dart';

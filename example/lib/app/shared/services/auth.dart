@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 import '../../../helpers/helpers.dart';
-import '../../models/api_response.dart';
 import '../../models/user_model.dart';
 import '../../modules/modules.dart';
 import '../shared.dart';

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../helpers/helpers.dart';
 import '../config.dart';
-import 'color_palette.dart';
 
 /// Input Border
 OutlineInputBorder _inputBorder([Color? color]) {

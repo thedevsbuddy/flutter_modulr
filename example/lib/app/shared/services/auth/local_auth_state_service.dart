@@ -1,6 +1,6 @@
 import 'package:get/get_utils/get_utils.dart';
 
-import '../../../models/api_response.dart';
+import '../../models/api_response.dart';
 import '../services.dart';
 
 class LocalAuthStateService extends BaseService implements AuthStateService {

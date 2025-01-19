@@ -1,4 +1,4 @@
-import '../../../models/api_response.dart';
+import '../../../shared/models/api_response.dart';
 import '../../../shared/services/services.dart';
 import 'profile_service.dart';
 

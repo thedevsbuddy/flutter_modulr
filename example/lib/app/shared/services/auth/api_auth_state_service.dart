@@ -1,5 +1,5 @@
 import '../../../../helpers/helpers.dart';
-import '../../../models/api_response.dart';
+import '../../models/api_response.dart';
 import '../services.dart';
 
 class ApiAuthStateService extends BaseService implements AuthStateService {

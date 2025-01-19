@@ -1,4 +1,3 @@
-import '../../../models/api_response.dart';
 import 'package:get/get.dart';
 
 import '../../../shared/shared.dart';
