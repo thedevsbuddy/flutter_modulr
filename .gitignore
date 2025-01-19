@@ -74,8 +74,7 @@ build/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 
-/example/lib/app/
-!/example/lib/main.dart
+example/.git
 
 # FVM Version Cache
 .fvm/
