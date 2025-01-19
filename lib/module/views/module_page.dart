@@ -4,16 +4,16 @@ import 'package:get/get.dart';
 
 import '../../../shared/views/layouts/master_layout.dart';
 import '../../../shared/views/widgets/widgets.dart';
-import '../controllers/{SNAKE_MODULE}_controller.dart';
+import '../controllers/{SNAKE_CONTROLLER}_controller.dart';
 
-class {MODULE}Page extends StatelessWidget {
-  const {MODULE}Page({super.key});
+class {PAGE}Page extends StatelessWidget {
+  const {PAGE}Page({super.key});
   
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<{MODULE}Controller>(
-      init: {MODULE}Controller(),
-      builder: ({MODULE}Controller controller) {
+    return GetBuilder<{CONTROLLER}Controller>(
+      init: {CONTROLLER}Controller(),
+      builder: ({CONTROLLER}Controller controller) {
         return controller.isBusy
                 ? LoadingIconWidget(message: "Please wait...")
                 : MasterLayout(

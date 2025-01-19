@@ -6,11 +6,11 @@ import '../../../models/models.dart';
 import '../../../shared/shared.dart';
 import '../services/{SNAKE_MODULE}_service.dart';
 
-class {MODULE}Controller extends AppController {
+class {CONTROLLER}Controller extends AppController {
   /// Create and get the instance of the controller
-  static {MODULE}Controller get instance {
-    if (!Get.isRegistered<{MODULE}Controller>()) Get.put({MODULE}Controller());
-    return Get.find<{MODULE}Controller>();
+  static {CONTROLLER}Controller get instance {
+    if (!Get.isRegistered<{CONTROLLER}Controller>()) Get.put({CONTROLLER}Controller());
+    return Get.find<{CONTROLLER}Controller>();
   }
 
   /// Initialise [{MODULE}Module] service

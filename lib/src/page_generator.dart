@@ -1,6 +1,5 @@
 import 'package:dcli/dcli.dart';
 import 'package:modulr/module/views/module_page.dart' as modulr_page;
-import 'package:modulr/module/views/module_single_page.dart' as modulr_single_page;
 import 'package:recase/recase.dart';
 
 import 'base_generator.dart';
@@ -16,24 +15,22 @@ class PageGenerator extends BaseGenerator {
     }
 
     /// Get stub
-    String stub = single ? modulr_single_page.stub : modulr_page.stub;
+    String stub = modulr_page.stub;
 
     /// Generate Controller
-    Utils.makeDir(viewPath);
+    Utils.makeDir(pagePath);
 
     /// Replace slots with actual value
-    String viewFile = stub.replaceAll('{PAGE}', viewName.pascalCase);
-    viewFile = viewFile.replaceAll('{MODULE}', moduleName.pascalCase);
-    viewFile = viewFile.replaceAll('{SNAKE_MODULE}', moduleName.snakeCase);
+    String viewFile = parseStub(stub);
 
     /// Write File
     Utils.writeFile(
-      "$viewPath/${viewName.snakeCase}_page.dart",
+      "$pagePath/${pageName.snakeCase}_page.dart",
       viewFile,
     );
 
     /// Show Success message
-    print(green('"$viewPath/${viewName.snakeCase}_page.dart" generated successfully.'));
+    print(green('"$pagePath/${pageName.snakeCase}_page.dart" generated successfully.'));
 
     /// Update module export to add the new page
     if (single) {
@@ -61,25 +58,25 @@ class PageGenerator extends BaseGenerator {
     moduleName = ReCase(onModule.replaceAll('--on=', ''));
 
     // Assign view path for the module
-    viewPath = "lib/app/modules/${moduleName.snakeCase}/views";
+    pagePath = "lib/app/modules/${moduleName.snakeCase}/views";
     modulePath = "lib/app/modules/${moduleName.snakeCase}";
 
     /// Assign variable values
-    viewName = ReCase(args.first);
-    String? rawViewName = viewName.originalText;
-    rawViewName.toLowerCase().replaceAll('page', "");
-    viewName = ReCase(rawViewName);
+    pageName = ReCase(args.first);
+    String? rawpageName = pageName.originalText;
+    rawpageName.toLowerCase().replaceAll('page', "");
+    pageName = ReCase(rawpageName);
 
     return true;
   }
 
   Future<void> updateModuleExport() async {
-    String exportFile = "views/${viewName.snakeCase}_page.dart";
+    String exportFile = "views/${pageName.snakeCase}_page.dart";
     String moduleFilePath = "$modulePath/${moduleName.snakeCase}_module.dart";
     String moduleFileContent = await Utils.readFile(moduleFilePath);
     if (moduleFileContent.contains(exportFile)) {
       /// Show Success message
-      print(yellow('`export "${viewName.snakeCase}_page.dart"` already exists in $moduleFilePath'));
+      print(yellow('`export "${pageName.snakeCase}_page.dart"` already exists in $moduleFilePath'));
       return;
     }
     moduleFileContent = """

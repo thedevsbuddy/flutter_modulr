@@ -16,7 +16,8 @@ class ModelGenerator extends BaseGenerator {
     /// Check and create directory
     Utils.makeDir(modelPath);
 
-    String modelFile = modulr_model.stub.replaceAll('{MODULE}', moduleName.pascalCase);
+    /// Replace slots with actual value
+    String modelFile = parseStub(modulr_model.stub);
 
     /// Write File
     Utils.writeFile("$modelPath/${moduleName.snakeCase}_model.dart", modelFile);

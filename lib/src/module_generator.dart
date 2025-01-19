@@ -60,12 +60,8 @@ class ModuleGenerator extends BaseGenerator {
     /// Check and create directory
     Utils.makeDir(routePath);
 
-    /// Process Router File
-    String routeFile = modulr_router.stub.replaceAll('{MODULE}', moduleName.pascalCase);
-    routeFile = routeFile.replaceAll('{SNAKE_MODULE}', moduleName.snakeCase);
-    routeFile = routeFile.replaceAll('{MODULE_URL}', moduleName.paramCase);
-    routeFile = routeFile.replaceAll('{CAMEL_MODULE}', moduleName.camelCase);
-    routeFile = routeFile.replaceAll('{MODULE_URL_CAMEL}', moduleName.camelCase);
+    /// Replace slots with actual value
+    String routeFile = parseStub(modulr_router.stub);
 
     /// Write File
     Utils.writeFile("$routePath/${moduleName.snakeCase}_router.dart", routeFile);

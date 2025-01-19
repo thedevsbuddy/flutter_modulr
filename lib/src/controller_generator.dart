@@ -22,11 +22,7 @@ class ControllerGenerator extends BaseGenerator {
     Utils.makeDir(controllerPath);
 
     /// Replace slots with actual value
-    String controllerFile = stub.replaceAll('{CONTROLLER}', controllerName.pascalCase);
-    controllerFile = controllerFile.replaceAll('{MODULE}', moduleName.pascalCase);
-    controllerFile = controllerFile.replaceAll('{CAMEL_MODULE}', moduleName.camelCase);
-    controllerFile = controllerFile.replaceAll('{SNAKE_MODULE}', moduleName.snakeCase);
-    controllerFile = controllerFile.replaceAll('{PLURAL_MODULE}', Utils.pluralize(moduleName.snakeCase));
+    String controllerFile = parseStub(stub);
 
     /// Write File
     Utils.writeFile(

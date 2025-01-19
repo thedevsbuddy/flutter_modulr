@@ -1,7 +1,8 @@
-const String stub = """
+const String stub = r"""
 import 'package:get/get.dart';
 
-import '../../../shared/controllers/app_controller.dart';
+import '../../../shared/shared.dart';
+// import '../services/{SNAKE_MODULE}_service.dart';
 
 class {CONTROLLER}Controller extends AppController {
   /// Create and get the instance of the controller
@@ -9,16 +10,14 @@ class {CONTROLLER}Controller extends AppController {
     if (!Get.isRegistered<{CONTROLLER}Controller>()) Get.put({CONTROLLER}Controller());
     return Get.find<{CONTROLLER}Controller>();
   }
+
+  /// Initialise [{MODULE}Module] service
+  // final {MODULE}Service _{CAMEL_MODULE}Service = {MODULE}Service.instance;
+
+  /// Props
   
-  /// Observables
-  final RxBool _exampleBool = RxBool(false);
-
-  /// Getters
-  bool get exampleBool => _exampleBool.value;
-
-  void exampleMethod() {
-    // TODO: implement exampleMethod
-    throw UnimplementedError();
+  Future<void> index({bool refresh = false}) async {
+    
   }
 }
 """;

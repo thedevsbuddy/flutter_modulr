@@ -1,3 +1,13 @@
+## Release: v0.1.3
+
+- Introduced generic CRUD methods in generated service classes.
+- Added foundational logic for interacting with the local database in generated local service classes.
+- Generated controllers now include basic methods.
+- Both generated controller and service classes now come with prebuilt logic for CRUD operations.
+- Removed the controller generator command.
+- Updated the page generator command to include controller generation alongside the page.
+- Optimized the generation process to enhance performance.
+
 ## Release: v0.1.2
 
 - Fixed issue where it was having issue on generating new Module.

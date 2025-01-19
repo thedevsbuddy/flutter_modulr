@@ -14,22 +14,18 @@ class ServiceGenerator extends BaseGenerator {
     Utils.makeDir(servicePath);
 
     /// Replace slots with actual value
-    String serviceFile = modulr_service.stub.replaceAll('{MODULE}', serviceName.pascalCase);
-    serviceFile = serviceFile.replaceAll('{SNAKE_MODULE}', serviceName.snakeCase);
-    String serviceLocalFile = modulr_local_service.stub.replaceAll('{MODULE}', serviceName.pascalCase);
-    serviceLocalFile = serviceLocalFile.replaceAll('{SNAKE_MODULE}', serviceName.snakeCase);
-    serviceLocalFile = serviceLocalFile.replaceAll('{PLURAL_MODULE}', Utils.pluralize(serviceName.snakeCase));
-    String serviceApiFile = modulr_api_service.stub.replaceAll('{MODULE}', serviceName.pascalCase);
-    serviceApiFile = serviceApiFile.replaceAll('{SNAKE_MODULE}', serviceName.snakeCase);
+    String serviceFile = parseStub(modulr_service.stub);
+    String serviceLocalFile = parseStub(modulr_local_service.stub);
+    String serviceApiFile = parseStub(modulr_api_service.stub);
 
     /// Write File
-    Utils.writeFile("$servicePath/${serviceName.snakeCase}_service.dart", serviceFile);
-    Utils.writeFile("$servicePath/local_${serviceName.snakeCase}_service.dart", serviceLocalFile);
-    Utils.writeFile("$servicePath/api_${serviceName.snakeCase}_service.dart", serviceApiFile);
+    Utils.writeFile("$servicePath/${moduleName.snakeCase}_service.dart", serviceFile);
+    Utils.writeFile("$servicePath/local_${moduleName.snakeCase}_service.dart", serviceLocalFile);
+    Utils.writeFile("$servicePath/api_${moduleName.snakeCase}_service.dart", serviceApiFile);
 
     /// Show Success message
-    print(green('"$servicePath/${serviceName.snakeCase}_service.dart" generated successfully.'));
-    print(green('"$servicePath/local_${serviceName.snakeCase}_service.dart" generated successfully.'));
-    print(green('"$servicePath/api_${serviceName.snakeCase}_service.dart" generated successfully.'));
+    print(green('"$servicePath/${moduleName.snakeCase}_service.dart" generated successfully.'));
+    print(green('"$servicePath/local_${moduleName.snakeCase}_service.dart" generated successfully.'));
+    print(green('"$servicePath/api_${moduleName.snakeCase}_service.dart" generated successfully.'));
   }
 }
