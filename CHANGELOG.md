@@ -1,3 +1,7 @@
+## Release: v0.1.2
+
+- Fixed issue where it was having issue on generating new Module.
+
 ## Release: v0.1.1
 
 - Added formatter for generated modules which formats the code each time a new module is generated.

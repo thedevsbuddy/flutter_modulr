@@ -1,8 +1,7 @@
 const String stub = """
 import 'package:get/get.dart';
 
-import '../../../models/models.dart';
-import '../../../shared/services/services.dart';
+import '../../../shared/shared.dart';
 import 'api_{SNAKE_MODULE}_service.dart';
 import 'local_{SNAKE_MODULE}_service.dart';
 

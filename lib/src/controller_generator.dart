@@ -37,7 +37,9 @@ class ControllerGenerator extends BaseGenerator {
     print(green('"$controllerPath/${controllerName.snakeCase}_controller.dart" generated successfully.'));
 
     /// Update module export to add the new controller
-    await updateModuleExport();
+    if (single) {
+      await updateModuleExport();
+    }
   }
 
   bool _validateArgs(List<String> args) {

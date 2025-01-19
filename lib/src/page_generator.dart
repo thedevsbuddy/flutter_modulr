@@ -36,7 +36,9 @@ class PageGenerator extends BaseGenerator {
     print(green('"$viewPath/${viewName.snakeCase}_page.dart" generated successfully.'));
 
     /// Update module export to add the new page
-    await updateModuleExport();
+    if (single) {
+      await updateModuleExport();
+    }
   }
 
   bool _validateArgs(List<String> args) {

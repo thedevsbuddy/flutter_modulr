@@ -1,6 +1,5 @@
 const String stub = """
-import '../../../models/api_response.dart';
-import '../../../shared/services/services.dart';
+import '../../../shared/shared.dart';
 import '{SNAKE_MODULE}_service.dart';
  
 class Local{MODULE}Service extends BaseService implements {MODULE}Service {
