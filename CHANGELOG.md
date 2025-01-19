@@ -7,6 +7,7 @@
 - Removed the controller generator command.
 - Updated the page generator command to include controller generation alongside the page.
 - Optimized the generation process to enhance performance.
+- **Full Changelog**: [Release: v0.1.3](https://github.com/thedevsbuddy/flutter_modulr/commits/v0.1.3)
 
 ## Release: v0.1.2
 
