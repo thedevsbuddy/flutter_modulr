@@ -43,15 +43,12 @@ class Database extends DatabaseConnection {
 
   // Update records based on where condition
   Future<void> update(Map<String, dynamic> data) async {
-    if (whereClause == null) return;
     List<Map<String, dynamic>> _data = await loadData();
-    Map<String, dynamic>? _item = await first();
-    if (_item == null) return;
-
-    int idx = _data.indexOf(_item);
-    _item.addAll(data);
-    _data.replaceRange(idx, idx, [_item]);
-
+    for (var record in _data) {
+      if (whereClause != null && (await filteredData()).contains(record)) {
+        record.addAll(data);
+      }
+    }
     await saveFile(_data);
   }
 }
