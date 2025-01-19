@@ -50,3 +50,7 @@ app.*.map.json
 .fvm/
 .vscode/
 TODO.md
+*copy.*
+*/**/*copy.*
+*bk.*
+*/**/*bk.*

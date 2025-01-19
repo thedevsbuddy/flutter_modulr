@@ -5,76 +5,53 @@ import 'database_connection.dart';
 class Database extends DatabaseConnection {
   Database(String filename) : super(filename);
 
-  /// Retrieves all items from the database.
-  ///
-  /// This method loads the data from the file and returns the entire list of data items.
-  /// It is useful for fetching all records from the database.
-  ///
-  /// @return The list of all data items in the database, or null if the data could not be loaded.
-  Future<List<Map<String, dynamic>>?> findMany() async {
-    await loadFile();
-    return data;
+  // Query builder - Add a where condition
+  Database where(Map<String, dynamic> conditions) {
+    whereClause = conditions;
+    return this;
   }
 
-  /// Retrieves a single item from the database based on the provided identifier and value.
-  ///
-  /// This method loads the data from the file and returns the first item that matches the
-  /// specified identifier and value. It is useful for fetching a specific record from the database.
-  ///
-  /// @param identifier The key to use for the lookup (e.g. 'id', 'name', etc.)
-  /// @param value The value to match against the identifier
-  /// @return The first item that matches the identifier and value, or null if not found
-  Future<Map<String, dynamic>?> findOne(Map<String, dynamic> args) async {
-    await loadFile();
-
-    return data?.firstWhereOrNull((item) {
-      bool matches = false;
-      for (String key in args.keys) {
-        matches = item[key] == args[key];
-      }
-      return matches;
-    });
+  // Get data based on the query
+  Future<List<Map<String, dynamic>>> get() async {
+    await loadData();
+    return await filteredData();
   }
 
-  /// Retrieves the first item from the database.
-  ///
-  /// This method loads the data from the file and returns the first item in the data list,
-  /// or null if the data list is empty. It is useful for fetching the first record from the database.
-  ///
-  /// @return The first item in the database, or null if the data list is empty.
+  // Delete records based on where condition
   Future<Map<String, dynamic>?> first() async {
-    await loadFile();
-    return data?.firstOrNull;
+    await loadData();
+    List<Map<String, dynamic>> _data = await filteredData();
+    return _data.firstWhereOrNull((record) => _data.contains(record));
   }
 
-  /// Stores a new item in the database.
-  ///
-  /// This method loads the data from the file, adds the new data item to the list,
-  /// and then saves the updated data back to the file. It is useful for adding
-  /// a new record to the database.
-  ///
-  /// @param newData The new data item to be added to the database.
-  /// @return The updated list of data items in the database.
-  Future<List<Map<String, dynamic>>?> store(dynamic newData) async {
-    await loadFile();
-    data!.add(newData);
-    await saveFile(data!);
-    return data;
+  // Delete records based on where condition
+  Future<void> delete() async {
+    await loadData();
+    List<Map<String, dynamic>> _data = await filteredData();
+    _data.removeWhere((record) => _data.contains(record));
+    await saveFile(_data);
   }
 
-  /// Removes a single item from the database based on the provided identifier and value.
-  ///
-  /// This method loads the data from the file, removes the first item that matches the
-  /// specified identifier and value, and then saves the updated data back to the file.
-  /// It is useful for deleting a specific record from the database.
-  ///
-  /// @param identifier The key to use for the lookup (e.g. 'id', 'name', etc.)
-  /// @param value The value to match against the identifier
-  /// @return The updated list of data items in the database.
-  Future<List<Map<String, dynamic>>?> destroy(String identifier, dynamic value) async {
-    await loadFile();
-    data!.removeWhere((item) => item[identifier] == value);
-    await saveFile(data!);
-    return data;
+  // Add a new record
+  Future<List<Map<String, dynamic>>> store(Map<String, dynamic> record) async {
+    await loadData();
+    List<Map<String, dynamic>> _data = await filteredData();
+    _data.add(record);
+    await saveFile(_data);
+    return _data;
+  }
+
+  // Update records based on where condition
+  Future<void> update(Map<String, dynamic> data) async {
+    if (whereClause == null) return;
+    List<Map<String, dynamic>> _data = await loadData();
+    Map<String, dynamic>? _item = await first();
+    if (_item == null) return;
+
+    int idx = _data.indexOf(_item);
+    _item.addAll(data);
+    _data.replaceRange(idx, idx, [_item]);
+
+    await saveFile(_data);
   }
 }

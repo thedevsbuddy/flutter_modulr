@@ -11,10 +11,10 @@ class LocalAuthService extends BaseService implements AuthService {
   @override
   Future<ApiResponse> login(
       {required String client, required Map<String, dynamic> body}) async {
-    Map<String, dynamic>? _data = await db.findOne({
+    Map<String, dynamic>? _data = await db.where({
       'email': body['identifier'],
       'password': body['password'],
-    });
+    }).first();
 
     if (_data != null) {
       UserModel user = UserModel.fromJson(_data);
@@ -37,11 +37,10 @@ class LocalAuthService extends BaseService implements AuthService {
   @override
   Future<ApiResponse> register(
       {required String client, required Map<String, dynamic> body}) async {
-    List<Map<String, dynamic>>? users = await db.findMany();
+    List<Map<String, dynamic>>? users = await db.get();
 
     int newId = 1;
-    if (users != null && users.isNotEmpty)
-      newId = int.parse(users.last['id'].toString()) + 1;
+    if (users.isNotEmpty) newId = int.parse(users.last['id'].toString()) + 1;
 
     List<Map<String, dynamic>>? _data = await db.store(
       UserModel.fromJson(body)

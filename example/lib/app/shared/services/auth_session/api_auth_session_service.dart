@@ -11,7 +11,8 @@ class ApiAuthSessionService extends BaseService implements AuthSessionService {
   @override
   Future<ApiResponse> getUser() async {
     if (storage.read("token") != null) {
-      return await _request.get('/profile', client: 'getUser', authenticate: true);
+      return await _request.get('/profile',
+          client: 'getUser', authenticate: true);
     } else {
       return ApiResponse(status: "0", message: "Something went wrong");
     }

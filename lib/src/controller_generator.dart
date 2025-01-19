@@ -26,6 +26,7 @@ class ControllerGenerator extends BaseGenerator {
     controllerFile = controllerFile.replaceAll('{MODULE}', moduleName.pascalCase);
     controllerFile = controllerFile.replaceAll('{CAMEL_MODULE}', moduleName.camelCase);
     controllerFile = controllerFile.replaceAll('{SNAKE_MODULE}', moduleName.snakeCase);
+    controllerFile = controllerFile.replaceAll('{PLURAL_MODULE}', Utils.pluralize(moduleName.snakeCase));
 
     /// Write File
     Utils.writeFile(

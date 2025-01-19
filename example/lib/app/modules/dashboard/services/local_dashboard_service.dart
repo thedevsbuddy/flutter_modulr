@@ -7,7 +7,7 @@ class LocalDashboardService extends BaseService implements DashboardService {
   String? database = 'dashboard';
 
   @override
-  Future<ApiResponse> doSomething({required String client}) async {
-    return ApiResponse(data: 'Local Data');
+  Future<ApiResponse> getData({required String client}) async {
+    return ApiResponse.success(data: "Test Data");
   }
 }

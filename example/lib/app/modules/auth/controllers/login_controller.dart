@@ -38,7 +38,8 @@ class LoginController extends AppController {
       _authService.init(client);
 
       /// Call api to login user
-      ApiResponse response = await _authService.login(client: client, body: body);
+      ApiResponse response =
+          await _authService.login(client: client, body: body);
       if (response.hasError()) {
         Toastr.show(message: "${response.message}");
         _authService.close(client);

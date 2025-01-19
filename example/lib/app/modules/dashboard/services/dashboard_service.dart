@@ -22,5 +22,5 @@ abstract class DashboardService extends BaseService {
   }
 
   /// Do Something
-  Future<ApiResponse> doSomething({required String client});
+  Future<ApiResponse> getData({required String client});
 }

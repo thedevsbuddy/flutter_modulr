@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dcli/dcli.dart';
+import 'package:pluralize/pluralize.dart';
 
 class Utils {
   static void makeDir(path) {
@@ -90,5 +91,10 @@ class Utils {
     } catch (e) {
       print(red('Error running command: $e'));
     }
+  }
+
+  static String pluralize(String text) {
+    final pr = Pluralize();
+    return pr.plural(text);
   }
 }

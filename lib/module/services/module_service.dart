@@ -11,8 +11,8 @@ abstract class {MODULE}Service extends BaseService {
 
   /// Create and get the instance of [{MODULE}Service]
   static {MODULE}Service get instance {
+    InternetService internetService = InternetService.instance;
     if (!Get.isRegistered<{MODULE}Service>()) Get.lazyPut<{MODULE}Service>(() {
-        InternetService internetService = InternetService.instance;
         if (devMode) return Local{MODULE}Service();
         if (!internetService.isConnected) return Local{MODULE}Service();
         return Api{MODULE}Service();
@@ -20,7 +20,10 @@ abstract class {MODULE}Service extends BaseService {
     return Get.find<{MODULE}Service>();
   }
   
-  /// Do Something
-  Future<ApiResponse> doSomething({required String client});
+  Future<ApiResponse> index({required String client});
+  Future<ApiResponse> show({required String client, required int id});
+  Future<ApiResponse> store({required String client, required Map<String, dynamic> data});
+  Future<ApiResponse> patch({required String client, required int id, required Map<String, dynamic> data});
+  Future<ApiResponse> destroy({required String client, required int id});
 }
 """;
