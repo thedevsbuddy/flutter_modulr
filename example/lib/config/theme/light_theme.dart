@@ -39,8 +39,7 @@ InputDecorationTheme _inputTheme() {
       fontSize: 14,
       color: kcSlate.shade500.withAlpha(alpha(0.5)),
     ),
-    contentPadding:
-        const EdgeInsets.symmetric(vertical: kSpacer3, horizontal: kSpacer4),
+    contentPadding: const EdgeInsets.symmetric(vertical: kSpacer3, horizontal: kSpacer4),
     prefixStyle: TextStyle(
       color: kcSlate.shade500,
     ),

@@ -71,8 +71,7 @@ class Database extends DatabaseConnection {
   /// @param identifier The key to use for the lookup (e.g. 'id', 'name', etc.)
   /// @param value The value to match against the identifier
   /// @return The updated list of data items in the database.
-  Future<List<Map<String, dynamic>>?> destroy(
-      String identifier, dynamic value) async {
+  Future<List<Map<String, dynamic>>?> destroy(String identifier, dynamic value) async {
     await loadFile();
     data!.removeWhere((item) => item[identifier] == value);
     await saveFile(data!);

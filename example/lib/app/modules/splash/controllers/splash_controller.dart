@@ -21,12 +21,12 @@ class SplashController extends AppController {
   Future<void> redirectUser() async {
     if (Config.authRequired) {
       if (await auth.check()) {
-        await 5.delay(() => Get.offAllNamed(Config.homeUrl));
+        await 5.delay(() => Get.offAllNamed(Config.homeRoute));
       } else {
         await 5.delay(() => Get.offAllNamed(AuthRoutes.login));
       }
     } else {
-      await 5.delay(() => Get.offAllNamed(Config.homeUrl));
+      await 5.delay(() => Get.offAllNamed(Config.homeRoute));
     }
   }
 }

@@ -14,7 +14,7 @@ class Auth extends GetxService {
   }
 
   /// Get [AuthService] instance
-  final AuthStateService _authStateService = AuthStateService.instance;
+  final AuthSessionService _AuthSessionService = AuthSessionService.instance;
 
   /// Observables
   final _user = UserModel().obs;
@@ -31,7 +31,7 @@ class Auth extends GetxService {
   /// Refreshes User data on every launch of the application
   Future<void> getUser() async {
     if (storage.read("token") != null) {
-      ApiResponse response = await _authStateService.getUser();
+      ApiResponse response = await _AuthSessionService.getUser();
 
       if (response.hasError()) {
         Toastr.show(message: "${response.message}");
@@ -46,7 +46,7 @@ class Auth extends GetxService {
 
   /// Logout the user + Server
   Future<void> logout() async {
-    ApiResponse response = await _authStateService.logout();
+    ApiResponse response = await _AuthSessionService.logout();
     if (response.hasError()) {
       Toastr.show(message: "${response.message}");
       return;

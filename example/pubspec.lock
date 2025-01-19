@@ -483,9 +483,11 @@ packages:
   modulr:
     dependency: "direct dev"
     description:
-      path: ".."
-      relative: true
-    source: path
+      path: "."
+      ref: "v0.1.0"
+      resolved-ref: d1920845ee36cb8926e3627454ec7851c2495bf6
+      url: "https://github.com/thedevsbuddy/flutter_modulr.git"
+    source: git
     version: "0.0.1"
   native_synchronization_temp:
     dependency: transitive

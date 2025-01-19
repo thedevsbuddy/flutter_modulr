@@ -38,7 +38,9 @@ var log = Logger(
 
 /// Generate and get MaterialColor From a Color
 MaterialColor generateMaterialColor(Color color) {
-  return MaterialColor(color.value, {
+  int argbValue = (color.a * 255).toInt() << 24 | color.r.toInt() << 16 | color.g.toInt() << 8 | color.b.toInt();
+
+  return MaterialColor(argbValue, {
     50: _tintColor(color, 0.9),
     100: _tintColor(color, 0.8),
     200: _tintColor(color, 0.6),
@@ -52,17 +54,11 @@ MaterialColor generateMaterialColor(Color color) {
   });
 }
 
-int _tintValue(int value, double factor) =>
-    max(0, min((value + ((255 - value) * factor)).round(), 255));
+int _tintValue(int value, double factor) => max(0, min((value + ((255 - value) * factor)).round(), 255));
 
-Color _tintColor(Color color, double factor) => Color.fromRGBO(
-    _tintValue(color.r.toInt(), factor),
-    _tintValue(color.g.toInt(), factor),
-    _tintValue(color.b.toInt(), factor),
-    1);
+Color _tintColor(Color color, double factor) => Color.fromRGBO(_tintValue(color.r.toInt(), factor), _tintValue(color.g.toInt(), factor), _tintValue(color.b.toInt(), factor), 1);
 
-int _shadeValue(int value, double factor) =>
-    max(0, min(value - (value * factor).round(), 255));
+int _shadeValue(int value, double factor) => max(0, min(value - (value * factor).round(), 255));
 
 Color _shadeColor(Color color, double factor) => Color.fromRGBO(
       _shadeValue(color.r.toInt(), factor),
@@ -79,8 +75,7 @@ Color getContrastColor(Color color) {
   int d = 0;
 
   /// Counting the perceptive luminance - human eye favors green color...
-  double luminance =
-      (0.299 * color.r + 0.587 * color.g + 0.114 * color.b) / 255;
+  double luminance = (0.299 * color.r + 0.587 * color.g + 0.114 * color.b) / 255;
 
   if (luminance > 0.7) {
     d = 0; // bright colors - black font

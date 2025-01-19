@@ -22,7 +22,7 @@ class Config {
   static String appName = "Flutter Fusion";
 
   /// Home/Dashboard URL [To be used to redirect user after login]
-  static String homeUrl = DashboardRoutes.dashboard;
+  static String homeRoute = DashboardRoutes.dashboard;
 
   /// Font Family For The Headings And Titles
   static String? headingFontFamily = GoogleFonts.poppins().fontFamily;
